@@ -25,7 +25,11 @@ class SongsService {
             throw new InvariantError('Songs gagal ditambahkan');
         }
 
-        return result.rows[0].id;
+        return {
+            status: "success",
+            message: "Song berhasil ditambahkan",
+            data: result.rows[0].id
+        };
     }
 
     async getSongs() {
