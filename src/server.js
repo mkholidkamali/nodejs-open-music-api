@@ -32,13 +32,13 @@ const init = async () => {
                 validator: AlbumValidator
             }
         },
-        {
-            plugin: b,
-            options: {
-                service: songsService,
-                validator: songsValidator
-            }
-        }
+        // {
+        //     plugin: songs,
+        //     options: {
+        //         service: songsService,
+        //         validator: songsValidator
+        //     }
+        // }
     ]);
 
     // Error Handling

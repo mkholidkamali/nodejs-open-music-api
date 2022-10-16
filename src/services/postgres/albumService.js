@@ -1,4 +1,5 @@
 const { nanoid } = require("nanoid");
+const { Pool } = require("pg");
 const { mapAlbumDBToModel } = require("../../../utils");
 const InvarianError = require("../../exception/InvariantError");
 const NotFoundError = require("../../exception/NotFoundError");
