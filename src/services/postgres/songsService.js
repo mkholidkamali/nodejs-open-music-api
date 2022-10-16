@@ -56,6 +56,44 @@ class SongsService {
             data: result.rows.map()[0]
         }
     }
+
+    async editSongById(id, { title, year, genre, performer, duration, albumId }) {
+        const updatedAt = new Date().toISOString();
+
+        const query = {
+            text: "UPDATE songs SET title = $1, year = $2, genre = $3, performer = $4, duration = $5, albumId = $6 WHERE id = $7 RETURNING id",
+            values: [title, year, genre, performer, duration, albumId, id]
+        };
+
+        const result = this._pool.query(query);
+
+        if (!result.rows[0].length) {
+            throw new NotFoundError('Song tidak ditemukan');
+        }
+
+        return {
+            status: "Success",
+            message: "Song berhasil diubah"
+        }
+    }
+
+    async deleteSongById(id) {
+        const query = {
+            text: 'DELETE FROM songs WHERE id = $1',
+            values: [id]
+        };
+
+        const result = this._pool.query(query);
+
+        if (!result.rows[0].length) {
+            throw new NotFoundError('Song tidak ditemukan');
+        }
+
+        return {
+            status: 'success',
+            message: 'Song berhasil dihapus'
+        }
+    }
 }
 
 module.exports = SongsService;
