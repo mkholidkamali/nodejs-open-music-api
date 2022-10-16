@@ -18,9 +18,11 @@ const mapSongsDBToModel = ({
     title,
     performer
 }) => ({
-    id,
-    title,
-    performer
+    songs: {
+        id,
+        title,
+        performer
+    }
 });
 
 const mapSongDBToModel = ({
