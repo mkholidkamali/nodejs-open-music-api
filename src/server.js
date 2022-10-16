@@ -7,6 +7,7 @@ const album = require('./api/album');
 const songs = require('./api/songs');
 const { AlbumValidator } = require('../validator/album');
 const ClientError = require('./exception/ClientError');
+const SongsValidator = require('../validator/songs');
 
 const init = async () => {
     const albumService = new AlbumService();
@@ -32,13 +33,13 @@ const init = async () => {
                 validator: AlbumValidator
             }
         },
-        // {
-        //     plugin: songs,
-        //     options: {
-        //         service: songsService,
-        //         validator: songsValidator
-        //     }
-        // }
+        {
+            plugin: songs,
+            options: {
+                service: songsService,
+                validator: SongsValidator
+            }
+        }
     ]);
 
     // Error Handling
