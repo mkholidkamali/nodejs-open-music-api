@@ -41,7 +41,7 @@ class AlbumHandler {
         const album = await this._service.getAlbumById(id);
 
         return {
-            status: 'sucess',
+            status: 'success',
             data: {
                 album
             }
