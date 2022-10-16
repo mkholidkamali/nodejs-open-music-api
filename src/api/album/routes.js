@@ -8,7 +8,7 @@ const routes = (handler) => [
     {
         method: 'GET',
         path: '/album',
-        handler: handler.getAlbumHandler
+        handler: handler.getAlbumsHandler
     },
     {
         method: 'GET',
@@ -23,7 +23,7 @@ const routes = (handler) => [
     {
         method: 'DELETE',
         path: '/album/{id}',
-        handler: handler.deleteNoteByIdHandler
+        handler: handler.deleteAlbumByIdHandler
     }
 ];
 

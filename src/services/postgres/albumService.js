@@ -8,7 +8,7 @@ class AlbumService {
         this.__pool = new Pool();
     }
 
-    async addAlbums({ name, year }) {
+    async addAlbum({ name, year }) {
         const id = nanoid(16);
         const createdAt = new Date().toISOString();
         const updatedAt = createdAt;
@@ -27,7 +27,7 @@ class AlbumService {
         return result.rows[0].id; 
     }
 
-    async getAlbum() {
+    async getAlbums() {
         const result = this.__pool.query('SELECT * FROM album');
         return result.rows.map(mapAlbumDBToModel);
     }
