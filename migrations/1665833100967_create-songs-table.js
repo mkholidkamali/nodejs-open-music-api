@@ -13,15 +13,15 @@ exports.up = pgm => {
             notNull: true
         },
         year : {
-            type: 'VARCHAR(10)',
-            notNull: true
-        },
-        performer : {
-            type: 'VARCHAR(20)',
+            type: 'INTEGER',
             notNull: true
         },
         genre : {
             type: 'TEXT',
+            notNull: true
+        },
+        performer : {
+            type: 'VARCHAR(20)',
             notNull: true
         },
         duration : {
