@@ -31,7 +31,7 @@ exports.up = pgm => {
         albumId : {
             type: 'VARCHAR(50)',
             notNull: false,
-            references: '"album"'
+            // references: '"album"'
         },
         "created_at": {
             type: 'TEXT',
@@ -44,7 +44,7 @@ exports.up = pgm => {
             default: pgm.func('current_timestamp')
         }
     })
-    pgm.createIndex('songs', 'albumId')
+    // pgm.createIndex('songs', 'albumId')
 };
 
 exports.down = pgm => {
