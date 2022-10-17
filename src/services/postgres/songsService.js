@@ -1,3 +1,4 @@
+const { query } = require("@hapi/hapi/lib/validation");
 const { nanoid } = require("nanoid");
 const { Pool } = require("pg");
 const { mapSongsDBToModel, map, mapSongDBToModel } = require("../../../utils");
@@ -28,10 +29,30 @@ class SongsService {
         return result.rows[0].id;
     }
 
-    async getSongs() {
-        const result = await this._pool.query('SELECT * FROM songs');
-
-        return result.rows.map(mapSongsDBToModel);
+    async getSongs({ title, performer }) {
+        if (title && performer) {
+            const query = {
+                text: "SELECT * FROM songs WHERE title LIKE $1 AND performer LIKE $2",
+                values: [`%${title}%`, `%${performer}%`]
+            };
+            const result = await this._pool.query(query);
+            return result.rows.map(mapSongsDBToModel);
+        } 
+        else if (title || performer) {
+            const query = {
+                text: "SELECT * FROM songs WHERE title LIKE $1 OR performer LIKE $2",
+                values: [`%${title}%`, `%${performer}%`]
+            };
+            const result = await this._pool.query(query);
+            return result.rows.map(mapSongsDBToModel);
+        } 
+        else {
+            const query = {
+                text: "SELECT * FROM songs"
+            };
+            const result = await this._pool.query(query);
+            return result.rows.map(mapSongsDBToModel);
+        }
     }
 
     async getSongById(id) {
