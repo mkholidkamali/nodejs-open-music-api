@@ -31,7 +31,6 @@ exports.up = pgm => {
         albumId : {
             type: 'VARCHAR(50)',
             notNull: false,
-            // references: '"album"'
         },
         "created_at": {
             type: 'TEXT',
