@@ -25,12 +25,12 @@ class AlbumHandler {
     }
 
     async getAlbumsHandler(request, h) {
-        const albums = await this._service.getAlbums();
+        const album = await this._service.getAlbums();
 
         return {
             status: 'success',
             data: {
-                albums
+                album
             }
         }
     }
