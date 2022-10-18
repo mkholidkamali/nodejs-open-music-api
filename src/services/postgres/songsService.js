@@ -40,7 +40,7 @@ class SongsService {
         } 
         else if (title || performer) {
             const query = {
-                text: "SELECT * FROM songs WHERE title LIKE $1 OR performer LIKE $2",
+                text: "SELECT * FROM songs WHERE title LIKE '$1' OR performer LIKE '$2'",
                 values: [`%${title}%`, `%${performer}%`]
             };
             const result = await this._pool.query(query);
